@@ -45,3 +45,20 @@ echo "清理克隆的仓库..."
 rm -rf source-j-legado
 
 echo "完成！所有json文件已合并到 light-novel.json"
+
+ver_update(){
+    # 定义文件路径
+    file=".ver"
+    
+    # 判断文件是否存在
+    if [ -f "$file" ]; then
+        # 如果文件存在，读取文件内容并加1
+        value=$(cat "$file")
+        new_value=$((value + 1))
+        echo "$new_value" > "$file"
+    else
+        # 如果文件不存在，创建文件并写入0
+        echo "0" > "$file"
+    fi
+}
+ver_update
