@@ -1,9 +1,20 @@
 #!/bin/bash
 
-# 克隆仓库
-echo "开始克隆仓库..."
-git clone https://github.com/jiwangyihao/source-j-legado
-cd source-j-legado || exit
+
+mkdir source
+
+# 下载书源并移动
+wget -P source https://github.com/ZWolken/Light-Novel-Yuedu-Source/releases/latest/download/Japan_based_bookSource.json
+wget -P source https://static.kksk.io/uuyr/b15e68c9cbdbad2000d52b7bc9137e7f.json
+# 仓库源
+git clone https://github.com/jiwangyihao/source-j-legado source-j-legado
+cp source-j-legado/*.json source
+rm -rf source-j-legado
+
+ls -l source
+
+
+cd source || exit
 
 # 查找所有json文件
 echo "查找所有json文件..."
@@ -41,8 +52,8 @@ echo "]" >> ../light-novel.json
 
 # 返回上级目录并删除克隆的仓库
 cd ..
-echo "清理克隆的仓库..."
-rm -rf source-j-legado
+echo "清理仓库..."
+rm -rf source
 
 echo "完成！所有json文件已合并到 light-novel.json"
 
