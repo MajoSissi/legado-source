@@ -1,75 +1,19 @@
 #!/bin/bash
 
+# version 记录整理次数
+echo $(($(cat .ver)+1)) > .ver
 
-mkdir source
+# 所有待整理书源放到临时目录
+books=books
 
-# 下载书源并移动
-wget -P source https://github.com/ZWolken/Light-Novel-Yuedu-Source/releases/latest/download/Japan_based_bookSource.json
-wget -P source https://static.kksk.io/uuyr/b15e68c9cbdbad2000d52b7bc9137e7f.json
-# 仓库源
+# 单文件书源
+wget -O $books/Japan.json https://github.com/ZWolken/Light-Novel-Yuedu-Source/releases/latest/download/Japan_based_bookSource.json
+wget -O $books/Bot.json https://static.kksk.io/uuyr/b15e68c9cbdbad2000d52b7bc9137e7f.json
+# 仓库书源
 git clone https://github.com/jiwangyihao/source-j-legado source-j-legado
-cp source-j-legado/*.json source
+cp source-j-legado/*.json $books
 rm -rf source-j-legado
 
-ls -l source
+# 整合书源
+node light-novel
 
-
-cd source || exit
-
-# 查找所有json文件
-echo "查找所有json文件..."
-json_files=$(find . -name "*.json" -type f -not -path "*/\.*")
-
-# 初始化输出文件，添加数组开始符号
-echo "[" > ../light-novel.json
-
-# 记录处理过的文件数量
-count=0
-total=$(echo "$json_files" | wc -l)
-
-# 遍历所有json文件
-for file in $json_files; do
-    count=$((count+1))
-    echo "处理文件 $count/$total: $file"
-    
-    # 提取json文件中的数组内容（去掉开头的 [ 和结尾的 ]）
-    content=$(sed -e 's/^\[//' -e 's/\]$//' "$file")
-    
-    # 如果内容不为空，则添加到输出文件
-    if [ -n "$content" ]; then
-        # 如果不是第一个文件且上一个文件有内容，添加逗号分隔
-        if [ "$count" -gt 1 ]; then
-            echo "," >> ../light-novel.json
-        fi
-        
-        # 写入内容（不包含数组的开头和结尾括号）
-        echo "$content" >> ../light-novel.json
-    fi
-done
-
-# 添加数组结束符号
-echo "]" >> ../light-novel.json
-
-# 返回上级目录并删除克隆的仓库
-cd ..
-echo "清理仓库..."
-rm -rf source
-
-echo "完成！所有json文件已合并到 light-novel.json"
-
-ver_update(){
-    # 定义文件路径
-    file=".ver"
-    
-    # 判断文件是否存在
-    if [ -f "$file" ]; then
-        # 如果文件存在，读取文件内容并加1
-        value=$(cat "$file")
-        new_value=$((value + 1))
-        echo "$new_value" > "$file"
-    else
-        # 如果文件不存在，创建文件并写入0
-        echo "0" > "$file"
-    fi
-}
-ver_update
