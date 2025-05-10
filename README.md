@@ -1,4 +1,4 @@
-## [阅读轻小说书源（整合）](https://github.com/gedoor/legado)
+## [阅读自用轻小说书源（整合）](https://github.com/gedoor/legado)
 
 |类型|订阅链接|
 |---|---|
