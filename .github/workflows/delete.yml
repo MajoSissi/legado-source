@@ -3,7 +3,7 @@ name: Cleanup Old Workflows
 on:
   workflow_dispatch: 
   schedule:
-    - cron: '0 0 * * 0' # 每周日 0 点运行一次
+    - cron: '0 0 * * 0'
 
 jobs:
   cleanup:
