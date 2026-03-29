@@ -1152,60 +1152,6 @@
     "weight": 0
   },
   {
-    "bookSourceComment": "建议登录\n\n酷安 @吉王义昊\nGitHub：https://github.com/jiwangyihao/source-j-legado\n\n# 关于许可的额外声明（在线版本参见 GitHub，以在线版本为准）\n\n- 当许可证与本声明冲突时，以本声明为准；\n- 对于本仓库中的任意代码片段：按照 `MPL 2.0` 中有关约定执行；\n- 对于本仓库中的某一完整书源的转载或二次开发，需满足以下全部条件：\n  - 在[本仓库](https://github.com/jiwangyihao/source-j-legado)的 `issue` 中提出请求并具体说明转载地址、二次开发后的书源开源地址以及其他必要信息；\n  - 等待原作者（即本仓库的初始所有者和初始代码贡献者 [@jiwangyihao](https://github.com/jiwangyihao)）查看并通过 `issue` 或依据原作者要求更改转载方式或补充更详细的信息。\n  - 考虑到本项目弃坑的可能，新 `issue` 开启后超过 20 个工作日原作者没有回复或者原作者回复要求更改的 `issue` 在更改后超过 20 个工作日原作者没有回复即视为原作者通过该 `issue`：\n    - 此处的 `issue` 仅包括在[本仓库](https://github.com/jiwangyihao/source-j-legado)开启的，处于「开启状态」的 issue。（也就是说，请不要在已经关闭的 issue 中回复）。\n    - 对于此种方式通过的 issue，转载/二次开发者仍应当遵守本声明中已经写明的相关约定。\n  - 不得上传至源仓库或整理至`非轻小说专用`的书源合集中并应当避免其他人将转载/二次开发版本上传至源仓库或整理至`非轻小说专用`的书源合集中：\n    - 关于轻小说的定义的额外说明：不包括国内的原创网络文学作品（如 `SF 轻小说` 中的原创轻小说以及`起点中文网`中标签包含轻小说的作品）。\n    - 轻小说专用的定义：有且仅有想看轻小说的人可能会添加。\n  - 必须在转载/二次开发地址的明显位置完整包含本声明的全部内容。\n  - 必须保留源注释中原有的更改记录。\n\n原整理修改：GitHub@ZWolken\n原作者：酷安户山香澄Official\n\n2024.5.1\n酷安 @吉王义昊\n更改登录URL\n书源内链接改用相对URL\n更改发现\n更改部分页面显示效果\n2024.7.19\n酷安 @吉王义昊\n空白封面时返回无封面以便使用阅读默认封面\n2026.3.5\n酷安 @吉王义昊\n添加R18发现分类\n小说详情页添加评论显示功能",
-    "bookSourceGroup": "轻小说",
-    "bookSourceName": "ESJ Zone",
-    "bookSourceType": 0,
-    "bookSourceUrl": "https://www.esjzone.one",
-    "bookUrlPattern": "https?://www.esjzone.one/detail/.*",
-    "customOrder": 0,
-    "enabled": true,
-    "enabledCookieJar": true,
-    "enabledExplore": true,
-    "exploreUrl": "@js:\nresult=[\n  {\n    'title': '>> 个人中心 <<',\n    'url': \"\",\n    'style':{\n      layout_flexGrow:1,\n      layout_flexBasisPercent:1\n    }\n  },\n  {\n    'title': \"我的收藏\",\n    'url': `/my/favorite/{{page}}`,\n    'style':{\n      layout_flexGrow:2,\n      layout_flexBasisPercent:0.25\n    \t}\n  },\n  {\n    'title': \"观看记录\",\n    'url': `/my/view/{{page}}`,\n    'style':{\n      layout_flexGrow:2,\n      layout_flexBasisPercent:0.25\n    \t}\n  }\n]\nhtml=org.jsoup.Jsoup.parse(java.ajax(source.bookSourceUrl+\"/list-01/\"))\ncategorys=html.select(\"#category option\")\nsortings=html.select(\"#sorting option\")\ncategorys.forEach(category => {\n  result.push({\n    'title': '>> ' + java.t2s(category.text()) + ' <<',\n    'url': \"\",\n    'style':{\n      layout_flexGrow:1,\n      layout_flexBasisPercent:1\n    }\n  })\n  sortings.forEach(sorting => {\n    result.push({\n      'title': java.t2s(sorting.text()),\n      'url':`/list-${category.attr('value')}${sorting.attr('value')}/{{page}}.html`,\n      'style':{\n        layout_flexGrow:2,\n        layout_flexBasisPercent:0.25\n      \t}\n    })\n  })\n})\nresult.push({\n  'title': '>> R18 <<',\n  'url': \"\",\n  'style':{\n    layout_flexGrow:1,\n    layout_flexBasisPercent:1\n  }\n})\nsortings.forEach(sorting => {\n  result.push({\n    'title': java.t2s(sorting.text()),\n    'url':`/tags-2${sorting.attr('value')}/R18/{{page}}.html`,\n    'style':{\n      layout_flexGrow:2,\n      layout_flexBasisPercent:0.25\n    \t}\n  })\n})\nJSON.stringify(result)",
-    "lastUpdateTime": 1772717972131,
-    "loginUrl": "/my/profile.html",
-    "respondTime": 2438,
-    "ruleBookInfo": {
-      "author": "class.list-unstyled mb-2 book-detail@tag.li.1@tag.a@text\n@js:\njava.t2s(result)",
-      "canReName": "true",
-      "coverUrl": "@css:div.col-md-3 > div > a > img@src",
-      "intro": "{{@@section.m-t-20@a.tag@text##(^|[\\n])##🏷️}}\n{{'&lrm;'}}\n{{@@div.description@html}}\n@js:\nvar intro = java.t2s(result);\ntry {\n  var commentsHtml = java.getString(\"@@.comments-section@html\");\n  if (commentsHtml && commentsHtml.trim() !== \"\") {\n    var doc = org.jsoup.Jsoup.parse(\"<div>\" + commentsHtml + \"</div>\");\n    var comments = doc.select(\"div.comment\");\n    var total = comments.size();\n    if (total > 0) {\n      var commentText = \"\\n\\n☕【评论】\\n评论数：\" + total;\n      for (var i = 0; i < comments.size(); i++) {\n        var c = comments.get(i);\n        var name = c.select(\"span.comment-title a\").text();\n        var floor = c.select(\"span.comment-floor\").text();\n        var date = c.select(\"span.comment-meta:not(.comment-floor)\").text();\n        var quote = c.select(\"blockquote p\").text();\n        var text = c.select(\"p.comment-text\").text();\n        commentText += \"\\n\\u200e\\n[\" + date + \"] \" + floor + \" 【\" + name + \"】\";\n        if (quote && quote.trim()) commentText += \"\\n> \" + quote;\n        if (text && text.trim()) commentText += \"\\n\" + text;\n      }\n      intro += java.t2s(commentText);\n    }\n  }\n} catch(e) {}\nresult = intro;",
-      "kind": "关注：{{@css:.book-detail label:has(.icon-eye)@text}},喜欢：{{@css:.book-detail label:has(.icon-heart)@text}}\n{{@@class.list-unstyled mb-2 book-detail@tag.li.-2@text##.+: }}\n{{@@class.list-unstyled mb-2 book-detail@tag.li.-1@text## .+}}",
-      "lastChapter": "@css:div[id = chapterList] >a:last-child@text\n@js:\njava.t2s(result)",
-      "name": "@css:div.col-md-9.book-detail > h2@text\n@js:\njava.t2s(result)",
-      "tocUrl": "",
-      "wordCount": "@css: .book-detail label:has(.icon-file-text)@text##,##"
-    },
-    "ruleContent": {
-      "content": "@css:div.forum-content.mt-3,div[class =d_post_content j_d_post_content]@all\n@js:\njava.t2s(result)"
-    },
-    "ruleExplore": {
-      "author": "",
-      "coverUrl": "",
-      "wordCount": ""
-    },
-    "ruleSearch": {
-      "author": "class.card-author@tag.a@text\n@js:\njava.t2s(result)",
-      "bookList": "@css: div.col-xl-9.col-lg-8.p-r-30 > div.row > div || .product-item",
-      "bookUrl": "@css:div> div > div > h5 > a, .product-title > a@href",
-      "coverUrl": "class.main-img@class.lazyload@data-src\n@js:\nresult.match(\"empty\") ? \"\" : result",
-      "intro": "class.book-ep@div.-1@text\n@js:\njava.t2s(result)",
-      "kind": "{{@css:.column:has(.icon-star-s)@text}},关注：{{@css:.column:has(.icon-eye)@text}},喜欢：{{@css:.column:has(.icon-heart)@text}},羽毛：{{@css:.column:has(.icon-feather)@text}},评论：{{@css:.column:has(.icon-message-square)@text}}##(\\([^()]+)##星$1人\n@js:\n!!result.split(\",\")[0] ? result : java.getString(\"class.book-update@text\")",
-      "lastChapter": "@css:div>div>div[class=card-ep mt-2], .book-ep a@text\n@js:\njava.t2s(result)",
-      "name": "@css: .card-title a, .product-title@text\n@js:\njava.t2s(result)",
-      "wordCount": "@css: .column:has(.icon-file-text)@text##,##"
-    },
-    "ruleToc": {
-      "chapterList": "#chapterList@a[data-title], p.non, summary",
-      "chapterName": "text\n@js:\njava.t2s(result)",
-      "chapterUrl": "href",
-      "isVolume": "p.non@text||summary@text"
-    },
-    "searchUrl": "/tags/{{key}}/{{page}}.html",
-    "weight": 0
-  },
-  {
     "bookSourceComment": "酷安 @吉王义昊\nGitHub：https://github.com/jiwangyihao/source-j-legado\n\n# 关于许可的额外声明（在线版本参见 GitHub，以在线版本为准）\n\n- 当许可证与本声明冲突时，以本声明为准；\n- 对于本仓库中的任意代码片段：按照 `MPL 2.0` 中有关约定执行；\n- 对于本仓库中的某一完整书源的转载或二次开发，需满足以下全部条件：\n  - 在[本仓库](https://github.com/jiwangyihao/source-j-legado)的 `issue` 中提出请求并具体说明转载地址、二次开发后的书源开源地址以及其他必要信息；\n  - 等待原作者（即本仓库的初始所有者和初始代码贡献者 [@jiwangyihao](https://github.com/jiwangyihao)）查看并通过 `issue` 或依据原作者要求更改转载方式或补充更详细的信息。\n  - 考虑到本项目弃坑的可能，新 `issue` 开启后超过 20 个工作日原作者没有回复或者原作者回复要求更改的 `issue` 在更改后超过 20 个工作日原作者没有回复即视为原作者通过该 `issue`：\n    - 此处的 `issue` 仅包括在[本仓库](https://github.com/jiwangyihao/source-j-legado)开启的，处于「开启状态」的 issue。（也就是说，请不要在已经关闭的 issue 中回复）。\n    - 对于此种方式通过的 issue，转载/二次开发者仍应当遵守本声明中已经写明的相关约定。\n  - 不得上传至源仓库或整理至`非轻小说专用`的书源合集中并应当避免其他人将转载/二次开发版本上传至源仓库或整理至`非轻小说专用`的书源合集中：\n    - 关于轻小说的定义的额外说明：不包括国内的原创网络文学作品（如 `SF 轻小说` 中的原创轻小说以及`起点中文网`中标签包含轻小说的作品）。\n    - 轻小说专用的定义：有且仅有想看轻小说的人可能会添加。\n  - 必须在转载/二次开发地址的明显位置完整包含本声明的全部内容。\n  - 必须保留源注释中原有的更改记录。\n\n2024.4.10\n酷安 @吉王义昊\n处理目录中的卷名\n解决了章节中的引号导致加载目录失败的问题\n2024.5.7\n酷安 @吉王义昊\n支持登录\n支持网站阅读历史\n支持收藏（多收藏夹）\n新增发现\n2024.5.31\n酷安 @吉王义昊\n修正优先级序列模式下意外忽略后续翻译源的问题\n2024.6.21\n酷安 @吉王义昊\n跟进最新 API 更改\n2024.7.8\n酷安 @吉王义昊\n跟进源站发现更改\n2024.7.23\n酷安 @吉王义昊\n跟进源站登录更改\n2024.8.10\n酷安 @吉王义昊\n支持添加网址\n2024.10.28\n酷安 @吉王义昊\n支持「Lordly•阅读」\n支持在正文中加载图片\n2025.4.25\n酷安 @吉王义昊\n修复发现页加载\n调整目录章节名规则\n2025.9.5\n酷安 @吉王义昊\n跟进域名更改\n修复发现\n2025.9.27\n@DarkTide\n添加文库本支持\n发现增加文库分类\n2025.12.5\n@DarkTide\n文库本支持切换语言及翻译",
     "bookSourceGroup": "轻小说,机翻",
     "bookSourceName": "轻小说机翻🤖",
@@ -1270,17 +1216,17 @@
     "enabledCookieJar": true,
     "enabledExplore": true,
     "exploreUrl": "@js:\nvar result = [];\nvar BaseUrl = \"https://www.lightnovel.fun\";\nvar baseBody = {\n    \"is_encrypted\": 0,\n    \"platform\": \"pc\",\n    \"client\": \"web\",\n    \"sign\": \"\",\n    \"gz\": 0,\n    \"d\": {\n        \"parent_gid\": 3,\n        \"security_key\": JSON.parse(decodeURIComponent(cookie.getKey(BaseUrl, \"token\"))).security_key\n    }\n};\nvar headers = {\n\t   \"User-Agent\": \"Mozilla/5.0 (Android 11; Mobile; rv:142.0) Gecko/142.0 Firefox/142.0\",\n    \"Content-Type\": \"application/json\",\n    \"Cookie\": cookie.getCookie(BaseUrl)\n};\n[\n    [\"轻小说\", 3],\n    [\"漫画\", 33]\n].forEach(([tag, id]) => {\n    result.push({\n        title: tag,\n        url: null,\n        style: {\n            layout_flexGrow: 1,\n            layout_flexBasisPercent: 1\n        }\n    });\n    baseBody.d.parent_gid = id;\n    let sorts = java.post(BaseUrl + \"/proxy/api/category/get-categories\", JSON.stringify(baseBody), headers).body();\n    JSON.parse(sorts).data.forEach(sort => {\n        let url = BaseUrl + \"/proxy/api/category/get-article-by-cate,\";\n        baseBody.d.gid = sort.gid;\n        baseBody.d.page = \"{{page === 1 ? 1 : source.getVariable()}}\";\n        url += JSON.stringify({\n            \"body\": JSON.stringify(baseBody),\n            \"headers\": headers,\n            \"method\": \"POST\"\n        });\n        result.push({\n            title: sort.name,\n            url: url,\n            style: {\n                layout_flexGrow: 1,\n                layout_flexBasisPercent: tag === \"漫画\" ? 0.2 : 0.25\n            }\n        });\n    })\n});\nJSON.stringify(result);",
-    "header": "{\n\t \"User-Agent\": \"Mozilla/5.0 (Android 11; Mobile; rv:142.0) Gecko/142.0 Firefox/142.0\",\n  \"Referer\": \"https://www.lightnovel.fun/\"\n}",
-    "lastUpdateTime": 1760187725405,
-    "loginCheckJs": "if (/category/.test(result.url())) {\n    const originUrl = java.ruleUrl;\n    const filterID = [0, 5];\n    let nextPage = page === 1 ? 2 : +source.getVariable() + 1;\n    let Data = JSON.parse(result.body());\n    let maxPage = Math.ceil(Data.data.page_info.count / 20);\n    let bookList = Data?.data?.list?.filter(item => !filterID.includes(item.sid)) || [];\n\n    /*\n    \t*过滤后数据为空时，翻页请求获取新数据\n     *限制单次翻页，避免陷入死循环\n     */\n    let retryCount = 0;\n    let currentUrl = originUrl;\n    while (bookList.length === 0 && retryCount < 5 && nextPage <= maxPage) {\n        currentUrl = String(currentUrl).replace(/\\\\\"page\\\\\":\\\\\"(\\d+)\\\\\"/g, (match, pageNum) => {\n            return `\\\\\"page\\\\\":\\\\\"${+pageNum + 1}\\\\\"`;\n        });\n        bookList = JSON.parse(java.ajax(currentUrl))?.data?.list?.filter(item => !filterID.includes(item.sid)) || [];\n        retryCount++;\n        nextPage++;\n        if (bookList.length > 0) {\n            break;\n        }\n    }\n    //java.log(nextPage);\n    // 利用源变量代替page变量作为页码\n    source.setVariable(nextPage);\n    result = Packages.io.legado.app.help.http.StrResponse(result.url(), JSON.stringify(bookList));\n}\n\nresult;",
+    "header": "{\n  \"User-Agent\": \"Mozilla/5.0 (Android 11; Mobile; rv:142.0) Gecko/142.0 Firefox/142.0\",\n  \"Referer\": \"https://www.lightnovel.fun/\"\n}",
+    "lastUpdateTime": 1774326690541,
+    "loginCheckJs": "if (/category/.test(result.url())) {\n    const originUrl = java.ruleUrl;\n    const filterID = [5];\n    let nextPage = page === 1 ? 2 : +source.getVariable() + 1;\n    let Data = JSON.parse(result.body());\n    let maxPage = Math.ceil(Data.data.page_info.count / 20);\n    let bookList = [];\n    if (Data && Data.data && Data.data.list) {\n        bookList = Data.data.list.filter(item => !filterID.includes(item.sid)) || [];\n    }\n    /*\n     *过滤后数据为空时，翻页请求获取新数据\n     *限制单次翻页，避免陷入死循环\n     */\n    let retryCount = 0;\n    let currentUrl = originUrl;\n    while (bookList.length === 0 && retryCount < 5 && nextPage <= maxPage) {\n        currentUrl = String(currentUrl).replace(/\\\\\"page\\\\\":\\\\\"(\\d+)\\\\\"/g, (match, pageNum) => {\n            return `\\\\\"page\\\\\":\\\\\"${+pageNum + 1}\\\\\"`;\n        });\n        const resp = JSON.parse(java.ajax(currentUrl));\n        bookList = (resp && resp.data && resp.data.list) ? resp.data.list.filter(item => !filterID.includes(item.sid)) : [];\n        retryCount++;\n        nextPage++;\n        if (bookList.length > 0) {\n            break;\n        }\n    }\n    //java.log(nextPage);\n    // 利用源变量代替page变量作为页码\n    source.setVariable(nextPage);\n    result = Packages.io.legado.app.help.http.StrResponse(result.url(), JSON.stringify(bookList));\n}\nresult;",
     "loginUrl": "https://www.lightnovel.fun/",
     "respondTime": 180000,
     "ruleBookInfo": {
       "author": "$.series.author",
       "coverUrl": "$.series.cover",
       "init": "<js>\njsContent=src.match(/<script>window.__NUXT__.+?<.script>/gi)[0].replace(/<.?script>/gi,'')\nwindow={}\neval(jsContent)\nJSON.stringify(window.__NUXT__.data)\n</js>\n$[0]",
-      "intro": "@js:\nres=result.series.intro\nres+=\"\\n上传者：\\n\"\nresult.series.editors.forEach(i=>{\n  res+=`- 昵称：${i.nickname}|签名：${i.sign}|等级：${i.level.level}|${i.level.name}\\n`\n})\nif (result.comments) {\n  res+=\"\\n评论：\\n\"\n  result.comments.forEach(i=>{\n    res+=`- ${i.time}|${i.rate}星|${i.user_info.nickname}|${i.user_info.level.name}|${i.text}\\n`\n  })\n}\nres",
-      "kind": "@js:\nres=[\"评分: \"+{{$.series.score}}]\nresult.series.editors.forEach(i=>res.push(i.nickname))\nif (result.series.name.match(/\\[.+?\\]/gi)) {\n  result.series.name.match(/\\[.+?\\]/gi).forEach(i=>res.push(i.replace(/[\\[\\]]/gi,'')));\n}\nres",
+      "intro": "@js:\nif (result.series) {\n    res = result.series.intro;\n    res += \"\\n上传者：\\n\";\n    result.series.editors.forEach(i => {\n        res += `- 昵称：${i.nickname}|签名：${i.sign}|等级：${i.level.level}|${i.level.name}\\n`;\n    });\n} else {\n    res = result.article.summary;\n}\nif (result.comments) {\n  res+=\"\\n评论：\\n\"\n  result.comments.forEach(i=>{\n    res+=`- ${i.time}|${i.rate}星|${i.user_info.nickname}|${i.user_info.level.name}|${i.text}\\n`\n  })\n}\nres",
+      "kind": "@js:\nres = [];\nif (result.series) {\n    res = [\"评分: \" + result.series.score];\n    result.series.editors.forEach(i => res.push(i.nickname));\n    if (result.series.name.match(/\\[.+?\\]/gi)) {\n        result.series.name.match(/\\[.+?\\]/gi).forEach(i => res.push(i.replace(/[\\[\\]]/gi, '')));\n    }\n} else {\n    res.push(result.article.author.nickname);\n}\nres;",
       "lastChapter": "$.series.articles[-1].title",
       "name": "$.series.name##\\[.+?\\]##"
     },
@@ -1291,28 +1237,28 @@
     "ruleExplore": {
       "author": "$.author",
       "bookList": "$[*]",
-      "bookUrl": "https://www.lightnovel.fun/cn/series/{{$.sid}}",
+      "bookUrl": "@js:\n({{$.sid}} != 0) ? \"https://www.lightnovel.fun/cn/series/{{$.sid}}\" : \"https://www.lightnovel.fun/cn/detail/{{$.aid}}\"",
       "coverUrl": "$.cover",
       "kind": "$.last_time",
       "name": "$.title"
     },
     "ruleSearch": {
-      "author": "$.author&&$.editors.*.nickname",
-      "bookList": "$.data.list",
-      "bookUrl": "https://www.lightnovel.fun/cn/series/{{$.sid}}",
+      "author": "$.author",
+      "bookList": "$.data['collections', 'articles'][*]",
+      "bookUrl": "@js:\n({{$.sid}} != 0) ? \"https://www.lightnovel.fun/cn/series/{{$.sid}}\" : \"https://www.lightnovel.fun/cn/detail/{{$.aid}}\"",
       "checkKeyWord": "最弱的驯养师开启的捡垃圾的旅途",
       "coverUrl": "$.cover",
-      "intro": "@js:\nres=\"\\n上传者：\\n\"\nresult.editors.forEach(i=>{\n  res+=`- 昵称：${i.nickname}|签名：${i.sign}|等级：${i.level.level}|${i.level.name}\\n`\n})\nres",
-      "kind": "@js:\nres=[result.group_name]\nif (result.name.match(/\\[.+?\\]/gi)) {\n  result.name.match(/\\[.+?\\]/gi).forEach(i=>res.push(i.replace(/[\\[\\]]/gi,'')));\n}\nresult.editors.forEach(i=>res.push(i.nickname))\nres",
-      "name": "$.name##\\[.+?\\]##"
+      "intro": "@js:\nres = \"\\n上传者：\\n\";\nif (result.editors) {\n    result.editors.forEach(i => {\n        res += `- 昵称：${i.nickname}|签名：${i.sign}|等级：${i.level.level}|${i.level.name}\\n`;\n    });\n} else {\n    res += result.author;\n}\nres;",
+      "kind": "@js:\nres = [result.group_name];\nif (result.name.match(/\\[.+?\\]/gi)) {\n    result.name.match(/\\[.+?\\]/gi).forEach(i => res.push(i.replace(/[\\[\\]]/gi, '')));\n}\nif (result.editors) {\n    result.editors.forEach(i => res.push(i.nickname));\n} else {\n    res.push(result.author);\n}\nres;",
+      "name": "@js:\n({{$.sid}}!=0) ? '{{$.name}}' : '{{$.title}}' "
     },
     "ruleToc": {
-      "chapterList": "@js:\njsContent=src.match(/<script>window.__NUXT__.+?<.script>/gi)[0].replace(/<.?script>/gi,'')\nwindow={}\neval(jsContent)\nwindow.__NUXT__.data[0].series.articles.map(i=>JSON.stringify(i))",
+      "chapterList": "@js:\nres = []\njsContent=src.match(/<script>window.__NUXT__.+?<.script>/gi)[0].replace(/<.?script>/gi,'')\nwindow={}\neval(jsContent)\nif(window.__NUXT__.routePath.includes('detail')){\n  res = [JSON.stringify(window.__NUXT__.data[0].article)]\n} else {\n  res = window.__NUXT__.data[0].series.articles.map(i=>JSON.stringify(i))\n}\nres",
       "chapterName": "$.title",
       "chapterUrl": "https://www.lightnovel.fun/cn/detail/{{$.aid}}",
       "updateTime": "$.time"
     },
-    "searchUrl": "@js:\nurl='https://www.lightnovel.fun/proxy/api/search/search-result';\nbody = {\n    \"is_encrypted\": 0,\n    \"platform\": \"pc\",\n    \"client\": \"web\",\n    \"sign\": \"\",\n    \"gz\": 0,\n    \"d\": {\n        \"q\": \"{{key}}\",\n        \"type\": 2,\n        \"page\": page,\n        \"security_key\": JSON.parse(decodeURIComponent(cookie.getKey(\"https://www.lightnovel.fun/\",\"token\"))).security_key\n    }\n}\noption={\"method\":\"POST\",\"body\":JSON.stringify(body)};\noption.headers={ \"Content-Type\": \"application/json; charset=UTF-8\" };\njava.put('url',String(url+','+JSON.stringify(option)))",
+    "searchUrl": "@js:\nurl = \"https://www.lightnovel.fun/proxy/api/search/search-result\";\nbody = {\n  is_encrypted: 0,\n  platform: \"pc\",\n  client: \"web\",\n  sign: \"\",\n  gz: 0,\n  d: {\n    q: \"{{key}}\",\n    page: page,\n    type: 0,\n    security_key: JSON.parse(decodeURIComponent(cookie.getKey(\"https://www.lightnovel.fun/\", \"token\"))).security_key,\n  },\n};\noption = { method: \"POST\", body: JSON.stringify(body) };\noption.headers = { \"Content-Type\": \"application/json; charset=UTF-8\" };\njava.put(\"url\", String(url + \",\" + JSON.stringify(option)));",
     "weight": 0
   },
   {
